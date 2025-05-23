@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Verificación completa</title>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+  <h1>Verificando...</h1>
+
+  <script>
+    const client = supabase.createClient(
+      'https://ppubmxokdhiqhnnrnyek.supabase.co',
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBwdWJteG9rZGhpcWhubnJueWVrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDczNzU5MTcsImV4cCI6MjA2Mjk1MTkxN30.J0-q0sPsl4boqx9TIaNP53EL9uyig3uyZlaohQ0glwY'
+    );
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      const { data: { user }, error } = await client.auth.getUser();
+      if (user) {
+        Swal.fire('Confirmado', 'Tu correo ha sido verificado correctamente', 'success');
+      } else {
+        Swal.fire('Error', 'No pudimos confirmar tu sesión', 'error');
+      }
+    });
+  </script>
+</body>
+</html>
